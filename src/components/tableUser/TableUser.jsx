@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../../api";
-import { usePagination } from "../../hooks/usePagination";
 import { useResizableColumns } from "../../hooks/useResizebleColumns";
 import { useContextMenu } from "../../hooks/useContextMenu";
 import { useSort } from "../../hooks/useSort";
@@ -11,14 +10,13 @@ import {
 } from "../../lib/utils/buildParamsUrl";
 import { FIELDS } from "../../lib/contants/constants";
 import { SortSelect } from "../sortSelect/SortSelect";
-import { UserModal } from "../userModal/UserModal";
 import { Pagination } from "../pagination/Pagination";
+import { UserModal } from "../userModal/UserModal";
 import { getValue } from "../../lib/utils/getValueByKey";
 
 import styles from "./TableUser.module.css";
 
-export const TableUser = ({ filter, clearFilter }) => {
-  const { page, goToPage } = usePagination();
+export const TableUser = ({ filter, clearFilter, page, setPage }) => {
   const { sortField, sortOrder, setSort, resetSort, getSortParams } = useSort();
   const { columnWidths, startResize } = useResizableColumns();
   const {
@@ -44,7 +42,7 @@ export const TableUser = ({ filter, clearFilter }) => {
     } else {
       setSort(activeSortField, order);
     }
-    goToPage(1);
+    setPage(1);
     closeMenu();
   };
 
@@ -77,7 +75,7 @@ export const TableUser = ({ filter, clearFilter }) => {
   return (
     <>
       <table className={styles.table}>
-        <thead>
+        <thead className={styles.head}>
           <tr>
             {FIELDS.map(({ key, label }) => (
               <th
@@ -137,7 +135,7 @@ export const TableUser = ({ filter, clearFilter }) => {
         </tbody>
       </table>
 
-      <Pagination page={page} totalPages={totalPages} goToPage={goToPage} />
+      <Pagination page={page} totalPages={totalPages} goToPage={setPage} />
 
       {isVisible && (
         <SortSelect

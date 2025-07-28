@@ -75,6 +75,7 @@ export const FilterModal = ({ isOpen, onClose, onApply, initialFilter }) => {
             </select>
           ) : (
             <input
+              className={styles.inputFilter}
               type={fieldMeta.type}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}

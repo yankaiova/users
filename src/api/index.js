@@ -1,6 +1,5 @@
 export async function fetchUsers(url) {
   try {
-    console.log(url);
     const response = await fetch(url);
 
     if (!response.ok) {

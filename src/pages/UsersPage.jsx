@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useFilter } from "../hooks/useFilter";
-import { usePagination } from "../hooks/usePagination";
 import { FilterModal } from "../components/filterMOdal/FilterMOdal";
 import { TableUser } from "../components/tableUser/TableUser";
 
 export const UsersPage = () => {
-  const { goToPage } = usePagination();
+  const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const { filter, applyFilter, clearFilter } = useFilter(null);
   return (
@@ -17,7 +16,7 @@ export const UsersPage = () => {
         <button
           onClick={() => {
             clearFilter();
-            goToPage(1);
+            setPage(1);
           }}
         >
           Сбросить фильтр
@@ -27,12 +26,23 @@ export const UsersPage = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         onApply={(f) => {
-          applyFilter(f);
-          goToPage(1);
+          if (
+            confirm(
+              "Вы уверены, что хотите применить фильтры? Сортировка будет сброшена"
+            )
+          ) {
+            setPage(1);
+            applyFilter(f);
+          }
         }}
         initialFilter={filter}
       />
-      <TableUser filter={filter} clearFilter={clearFilter} />
+      <TableUser
+        page={page}
+        setPage={setPage}
+        filter={filter}
+        clearFilter={clearFilter}
+      />
     </>
   );
 };
