@@ -12,7 +12,7 @@ export async function fetchUsers(url) {
             401
           );
         case 403:
-          throw new AError("Доступ запрещён (403).", 403);
+          throw new Error("Доступ запрещён (403).", 403);
         case 404:
           throw new Error("Данные не найдены (404).", 404);
         case 500:
@@ -26,7 +26,7 @@ export async function fetchUsers(url) {
     }
     const data = await response.json();
     return { users: data.users, total: data.total };
-  } catch (e) {
-    throw error;
+  } catch (error) {
+    console.log(error);
   }
 }
