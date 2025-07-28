@@ -12,3 +12,7 @@
   padding: 4px 8px;
   cursor: pointer;
 }
+.sortOption:hover {
+  background-color: #00308f;
+  color: white;
+}
