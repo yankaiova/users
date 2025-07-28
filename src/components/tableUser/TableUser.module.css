@@ -1,0 +1,36 @@
+.resize {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  cursor: col-resize;
+  z-index: 10;
+}
+.table {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  border-collapse: collapse;
+}
+.headTable {
+  position: relative;
+  user-select: none;
+  min-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+.tableCell {
+  min-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 8px;
+  padding: 8px;
+  box-sizing: content-box;
+}
