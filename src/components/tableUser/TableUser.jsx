@@ -66,6 +66,7 @@ export const TableUser = ({ filter, clearFilter, page, setPage }) => {
       setUsers(users);
       setTotal(total);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, limit, skip, sortField, sortOrder]);
 
   const totalPages = Math.ceil(total / limit);
